@@ -8,9 +8,10 @@ Inside a comment write
 ```
 <cmg path_to_your_iamge>
 ```
-Only images with extension `png`, `jpeg` and `jpg` are accepted.
 
 ![](./workflow.gif)
+
+Only images with extension `png`, `jpeg` and `jpg` are accepted.
 
 ### Bad stuff
 It's not possible to put images directly in the code as it's implemented
