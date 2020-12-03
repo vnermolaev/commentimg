@@ -14,7 +14,7 @@ Inside a comment write
 Only images with extension `png`, `svg` and `jpg` are accepted. In filenames the following
 characters are allowed:
 
- - characters small and big
+ - small and big characters
  - numbers
  - dots
  - minus signs
