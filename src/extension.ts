@@ -62,14 +62,12 @@ export function activate(context: vscode.ExtensionContext) {
             const workspace_path_override = <string>commentimgConfig.get("workspace_path_override");
             const home_dir_override = <string>commentimgConfig.get("home_dir_override");
             let rootpath_extern = vscode.workspace.rootPath;
-            if (workspace_path_override || home_dir_override) {
+            if (workspace_path_override) {
                 rootpath_extern = ""
                 if (home_dir_override) {
                     rootpath_extern = home_dir_override;
                 }
-                if (workspace_path_override) {
-                    rootpath_extern = path.join(rootpath_extern,workspace_path_override);
-                }
+                rootpath_extern = path.join(rootpath_extern,workspace_path_override);
             }
             const src_intern = path.join(path.normalize(vscode.workspace.rootPath), img);
             const src_extern = path.join(path.normalize(rootpath_extern), img);
