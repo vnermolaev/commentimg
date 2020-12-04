@@ -3,7 +3,7 @@
     "displayName": "commentimg",
     "description": "Enhance your code with images as comments",
     "version": "0.0.2",
-    "publisher": "quicky84",
+    "publisher": "Victor Ermolaev",
     "engines": {
         "vscode": "^1.15.0"
     },
@@ -32,7 +32,7 @@
 						"string"
 					],
 					"default": "",
-					"description": "Override path to workspace to display images from. Leave Empty to use default one. Useful for devcontainers. this is relative to homedir if commentimg.home_dir_override is set.",
+					"description": "This setting overrides the outside workspace path (root for the images to display), from where the workspace is mounted inside the container. This option is intended to be set in .vscode/settings.json in project. Leave this Empty to use default vscode. This is especially useful for devcontainers. This path is relative to homedir if commentimg.home_dir_override is set.",
 					"scope": "resource"
 				},
 				"commentimg.home_dir_override": {
@@ -40,7 +40,7 @@
 						"string"
 					],
 					"default": "",
-					"description": "Override (outer) homedir for using this extension in devcontainer (if path rel. to home dir and usernames in docker and outside not equal).",
+					"description": "This setting overrides outside homedir for this extension, so the path above (commentimg.workspace_path_override) can be set relative to home dir. This option is intended to be set in homedir/.vscode settings.json. It is especially useful for devcontainers if usernames in devcontainer and outside not equal.",
 					"scope": "resource"
 				}
 			}

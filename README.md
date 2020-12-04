@@ -14,25 +14,24 @@ Inside a comment write
 Only images with extension `png`, `svg` and `jpg` are accepted. In filenames the following
 characters are allowed:
 
- - small and big characters
- - numbers
- - dots
- - minus signs
- - for pathes slash and backslash
- - underscore
+ - Small and big characters,
+ - numbers,
+ - dots,
+ - minus signs,
+ - for pathes slash and backslash and
+ - underscore.
 
 ### devcontainer
 
-to use in devcontainer, two options are there:
+To use this extension in a devcontainer, two options are there:
 
 #### commentimg.workspace_path_override
 
-override outside workspace path, from where the workspace is mounted inside the container. this option should be set in .vscode/settings.json in project.
+This setting overrides the outside workspace path (root for the images to display), from where the workspace is mounted inside the container. This option is intended to be set in .vscode/settings.json in project. Leave this Empty to use default vscode. It is especially useful for devcontainers. This path is relative to homedir if commentimg.home_dir_override is set.
 
 #### commentimg.home_dir_override
 
-override outside homedir for this extension, so path above can be given relative to home dir. This option should be set in homedir settings.json.
-
+This setting overrides outside homedir for this extension, so the path above (commentimg.workspace_path_override) can be set relative to home dir. This option is intended to be set in homedir/.vscode settings.json. It is especially useful for devcontainers if usernames in devcontainer and outside not equal.
 
 ### Bad stuff
 It's not possible to put images directly in the code as it's implemented
