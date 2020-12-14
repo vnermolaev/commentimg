@@ -51,18 +51,32 @@ export function activate(context: vscode.ExtensionContext) {
 
     function updateDecorations() {
         if(!activeEditor) { return; }
-        const regEx = /<cmg "(([a-zA-Z0-9_\\\/]+)\.(png|jpg))">/g;
+        const regEx = /<cmg "(([a-zA-Z0-9-_\.\\\/]+)\.(png|jpg|svg))">/g;
         const text = activeEditor.document.getText();
         let cimgs: vscode.DecorationOptions[] = [];
         let match: RegExpExecArray;
         while(match = regEx.exec(text)) {
             const img: string = match[1];
-            const src = path.join(path.normalize(vscode.workspace.rootPath), img);
+            const resource = activeEditor.document.uri;
+            const commentimgConfig = vscode.workspace.getConfiguration('commentimg', resource);
+            const workspace_path_override = <string>commentimgConfig.get("workspace_path_override");
+            const home_dir_override = <string>commentimgConfig.get("home_dir_override");
+            let rootpath_extern = vscode.workspace.rootPath;
+            if (workspace_path_override) {
+                rootpath_extern = ""
+                if (home_dir_override) {
+                    rootpath_extern = home_dir_override;
+                }
+                rootpath_extern = path.join(rootpath_extern,workspace_path_override);
+            }
+            const src_intern = path.join(path.normalize(vscode.workspace.rootPath), img);
+            const src_extern = path.join(path.normalize(rootpath_extern), img);
 
-            if(fs.existsSync(src)) {
+            if(fs.existsSync(src_intern)) {
                 let s = activeEditor.document.positionAt(match.index);
                 let e = activeEditor.document.positionAt(match.index + match[0].length);
-                let decoration = { range: new vscode.Range(s, e), hoverMessage: `![](file:///${src})` };
+
+                let decoration = { range: new vscode.Range(s, e), hoverMessage: `![](file:///${src_extern})` };
                 cimgs.push(decoration);
             }
         }
